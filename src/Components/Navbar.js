@@ -1,6 +1,12 @@
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({setIsLoggedIn}) => {
+    function setFalse (){
+        localStorage.setItem("isLoggedIn" , "false");
+   }
+
+   
+
     return(
         <nav>
             <div className="container d-flex justify-content-between ">
@@ -16,11 +22,11 @@ const Navbar = () => {
                 </div>
                 <div className="d-flex align-items-center">
                     <ul className="d-flex gap-3">
-                        <li><NavLink to="/" className="link">Home</NavLink></li>
-                        <li><NavLink to="/about" className="link">AboutUs</NavLink></li>
-                        <li><NavLink to="/courses" className="link">Courses</NavLink></li>
-                        <li><NavLink to="/others" className="link">Others</NavLink></li>
-                        <li><NavLink to="/login" className="link">login</NavLink></li>
+                        <li><NavLink to="/" className="link" onClick={setFalse()}>Home</NavLink></li>
+                        <li><NavLink to="/about" className="link"  onClick={setFalse()}>AboutUs</NavLink></li>
+                        <li><NavLink to="/courses" className="link"  onClick={setFalse()}>Courses</NavLink></li>
+                        <li><NavLink to="/others" className="link">Authentication</NavLink></li>
+                        
                     </ul>
                 </div>
                     

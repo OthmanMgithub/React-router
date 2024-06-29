@@ -1,5 +1,6 @@
 import {useForm} from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Login = () => {
     const {register , handleSubmit , formState : {errors} } = useForm();
@@ -14,23 +15,25 @@ const Login = () => {
         }
 
     }
-    return 
+    return(
+        
         <div className="flex justify-center items-center">
+            <Navbar />
             <div>
                 <h2 className="mt-6 text-center font-extrabold text-black-500">
                     Login 
                 </h2>
             </div>
-            <form className="mt-6 space-y-6" onSubmit={handleSubmit(submit)}>
+            <form className="mt-6 space-y-6 text-center centering" onSubmit={handleSubmit(submit)}>
                 <div>
-                    <label>
+                    <label className="redtext">
                         Email address
                     </label>
                     <input 
                         {...register("email" , {
                             required: "Email is required" ,
                             validate : (value) => {
-                                if (!value.Includes("@gmail")){
+                                if (!value.includes("@gmail")){
                                     return "Email should contain @gmail "
                                 }
                             },
@@ -39,9 +42,12 @@ const Login = () => {
                         className="w-full relative placeholder-black-600 text-black-500 rounded-t-md px-3 py-2"
                         placeholder="Email address"
                     />
+                    <label>
+                        Email is: othman@gmail.com
+                    </label>
                 </div>
                 <div>
-                    <label>
+                    <label className="redtext">
                         Password
                     </label>
                     <input 
@@ -54,26 +60,31 @@ const Login = () => {
                             },
                         })}
                         type="password"
-                        className="w-full relative placeholder-black-600 text-black-500 rounded-t-md px-3 py-2"
+                        className="font-extrabold w-full relative placeholder-black-600 text-black-500 rounded-t-md px-3 py-2"
                         placeholder="Password"
                     />
+                    <label>
+                        Password is: 12345
+                    </label>
                 </div>
                 <div>
                     <button 
                         type="submit"
-                        className="w-full relative placeholder-black-600 text-black-500 rounded-t-md px-3 py-2"
+                        className="bluetext w-full relative placeholder-black-600 rounded-t-md px-3 py-2"
                     >
                         Login
                     </button>
                 </div>
-                <p className="text-red-700">
+                <p className="redtext">
                     {errors.email ? `${errors.email.message}` : " "}
                 </p>
-                <p className="text-red-700">
+                <p className="redtext">
                     {errors.password ? `${errors.password.message}` : " "}
                 </p>
             </form>
         </div>
+    )
+        
     
 };
 
